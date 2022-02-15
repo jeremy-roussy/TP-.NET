@@ -13,7 +13,7 @@ namespace ASP.Server.Model
         public int Id { get; set; }
         public string Title { get; set; }
         public float Price { get; set; }
-        public List<Genre> Genres { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
         public string Contenu { get; set; }
 
 
