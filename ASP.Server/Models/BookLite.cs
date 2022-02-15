@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public class BookLite
+
+namespace ASP.Server.Model
 {
-	public BookLite()
-	{
+	public class BookLite
+	{ 
 		public Book Book { init; private get; }
-		public string Title { get => Book.Title }
-		public List<GenreFilter> Genre { get => Book.Genres.Select(x => new GenreFilter() { Genres = x }).ToList(); }
+		public string Title { get => Book.Title; }
+		public List<GenreFilter> Genre { get => Book.Genres.Select(x => new GenreFilter() { Genre = x }).ToList(); }
 	}
 }
+

@@ -22,7 +22,7 @@ namespace ASP.Server.Controllers
         public string Contenu { get; set; }
 
         // Liste des genres séléctionné par l'utilisateur
-        public List<int> Genres { get; set; }
+        public List<int> Genre { get; set; }
 
         // Liste des genres a afficher à l'utilisateur
         public IEnumerable<Genre> AllGenres { get; init;  }
@@ -40,7 +40,7 @@ namespace ASP.Server.Controllers
         public ActionResult<IEnumerable<Book>> List()
         {
             // récupérer les livres dans la base de donées pour qu'elle puisse être affiché
-            List<Book> ListBooks = null;
+            List<Book> ListBooks = libraryDbContext.Books.ToList();
             return View(ListBooks);
         }
 

@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public class GenreFilter
+namespace ASP.Server.Model
 {
-	public GenreFilter()
+	public class GenreFilter
 	{
 		public Genre Genre { init; private get; }
-		public string Type { get => Genre.ToString() }
-		public List<BookLite> Books { get => Genre.Books.Select(x => new BookLite() { Books = x }).ToList(); }
+		public string Type { get => Genre.ToString(); }
+		public List<BookLite> Books { get => Genre.Books.Select(x => new BookLite() { Book = x }).ToList(); }
 	}
 }
