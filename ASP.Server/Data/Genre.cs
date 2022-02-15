@@ -14,7 +14,8 @@ namespace ASP.Server.Model
 
         // Mettez ici les propriété de votre livre: Nom et Livres associés
         private string Type { get; set; }
-        public virtual ICollection<Book> Books { get; set; }
+        [JsonIgnore]
+        public ICollection<Book> Books { get; set; }
         // N'oublier pas qu'un genre peut avoir plusieur livres
     }
 
