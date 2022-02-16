@@ -13,16 +13,15 @@ namespace ASP.Server.Controllers
     {
         [Required]
         [Display(Name = "Nom")]
-        public String Name { get; set; }
+        //public String Name { get; set; }
 
         // Ajouter ici tous les champ que l'utilisateur devra remplir pour ajouter un livre
         public string Title { get; set; }
         public float Price { get; set; }
-        public ICollection<Genre> Genres { get; set; }
         public string Contenu { get; set; }
 
         // Liste des genres séléctionné par l'utilisateur
-        public List<int> Genre { get; set; }
+        public List<int> Genres { get; set; }
 
         // Liste des genres a afficher à l'utilisateur
         public IEnumerable<Genre> AllGenres { get; init;  }
@@ -50,9 +49,10 @@ namespace ASP.Server.Controllers
             if (ModelState.IsValid)
             {
                 // Il faut intéroger la base pour récupérer l'ensemble des objets genre qui correspond aux id dans CreateBookModel.Genres
-                List<Genre> genres = null;
+                List<Genre> genres = libraryDbContext.Genre.Where(genre => book.Genres.Contains(genre.Id)).ToList();
+
                 // Completer la création du livre avec toute les information nécéssaire que vous aurez ajoutez, et metter la liste des gener récupéré de la base aussi
-                libraryDbContext.Add(new Book() {  });
+                libraryDbContext.Add(new Book() { Title = book.Title, Price = book.Price, Contenu = book.Contenu});
                 libraryDbContext.SaveChanges();
             }
 
