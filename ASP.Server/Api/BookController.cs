@@ -56,9 +56,25 @@ namespace ASP.Server.Api
 
 
         // Vous vous montre comment faire la 1er, a vous de la compléter et de faire les autres !
-        public ActionResult<List<Book>> GetBooks()
+        public ActionResult<List<BookLite>> GetBooks(int? genreId, int lim =10, int offset =0 )
         {
-            throw new NotImplementedException("You have to do it youtself");
+            IEnumerable<Book> listBooks = libraryDbContext.Books.Include(x => x.Genres);
+            if (genreId.HasValue)  //Test nullité de genreId
+            {
+                var genre = libraryDbContext.Genre.SingleOrDefault(x => x.Id == genreId.Value);
+                if (genre != null) 
+                { 
+                    listBooks = listBooks.Where(x => x.Genres.Contains(genre)); 
+                }
+            }
+            //Utiliser Lim et Offset
+
+            return listBooks.Select(book => new BookLite(book)).ToList() ;
+        }
+
+        public ActionResult<Book> GetBook(int id)
+        {
+            return libraryDbContext.Books.Single(x => x.Id == id);
         }
 
     }
