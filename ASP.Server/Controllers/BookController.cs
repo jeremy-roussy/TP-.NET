@@ -52,12 +52,13 @@ namespace ASP.Server.Controllers
                 List<Genre> genres = libraryDbContext.Genre.Where(genre => book.Genres.Contains(genre.Id)).ToList();
 
                 // Completer la création du livre avec toute les information nécéssaire que vous aurez ajoutez, et metter la liste des gener récupéré de la base aussi
-                libraryDbContext.Add(new Book() { Title = book.Title, Price = book.Price, Contenu = book.Contenu});
+                libraryDbContext.Add(new Book() { Title = book.Title, Price = book.Price, Contenu = book.Contenu, Genres = genres});
                 libraryDbContext.SaveChanges();
             }
 
             // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les slécétionné
-            return View(new CreateBookModel() { AllGenres = null } );
+            //List<Genre> ListGenres = libraryDbContext.Genre.ToList();
+            return View(new CreateBookModel() { AllGenres = libraryDbContext.Genre.ToList() } );
         }
     }
 }
