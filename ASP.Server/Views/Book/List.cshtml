@@ -9,7 +9,12 @@
     <!-- la liste des genres est dans la variable Model qui est typé en ligne 3, elle correspond à la variable xxx dans View(xxx) du controller -->
     @foreach (var book in Model)
     {
-        <p>@Html.DisplayFor(Model => book.Title)</p>
+        <form asp-controller="Book" asp-action="Delete">
+            <p>@Html.DisplayFor(Model => book.Title)</p>
+            <input type="submit" value="Delete" style="width: 100%; margin-top: 50px" />
+            <input type="hidden" value="@book.Id" name="id"/>
+        </form>
+        //<button>Delete</button>
     }
 </div>
 
