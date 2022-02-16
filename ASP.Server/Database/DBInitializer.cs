@@ -19,10 +19,10 @@ namespace ASP.Server.Database
 
             Genre SF, Classic, Romance, Thriller;
             bookDbContext.Genre.AddRange(
-                SF = new Genre() { Type = "SF"},
-                Classic = new Genre() { Type = "Classic" },
-                Romance = new Genre() { Type = "Romance" },
-                Thriller = new Genre() { Type = "Thriller" }
+                SF = new Genre() {Id = 1, Type = "SF"},
+                Classic = new Genre() { Id = 2, Type = "Classic" },
+                Romance = new Genre() { Id = 3, Type = "Romance" },
+                Thriller = new Genre() { Id = 4, Type = "Thriller" }
             );
             bookDbContext.SaveChanges();
 
