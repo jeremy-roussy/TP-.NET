@@ -17,5 +17,12 @@ namespace WPF.Reader.Model
     // A vous de completer ce qu'est un Livre !!
     public class Book
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public float Price { get; set; }
+        public ICollection<Genre> Genres { get; set; }
+        public string Contenu { get; set; }
     }
 }
