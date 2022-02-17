@@ -77,14 +77,21 @@ namespace ASP.Server.Api
             return listBooks.Select(book => new BookLite(book)).Skip(offset).Take(lim).ToList() ;
         }
 
-        public ActionResult<Book> GetBook(int id)
+        public ActionResult<BookLite2> GetBook(int id)
         {
-           return libraryDbContext.Books.Single(x => x.Id == id);
+            BookLite2 book = new BookLite2(libraryDbContext.Books.Single(x => x.Id == id));
+           return book;
         }
 
-        public ActionResult<List<GenreFilter>> GetGenres()
+        public ActionResult<List<Genre>> GetGenres()
         {
-            return null; // libraryDbContext.Genres;
+            IEnumerable<Genre> listGenres = libraryDbContext.Genre.ToList();
+            List<Genre> genres = new List<Genre>();
+            foreach (Genre genre in listGenres)
+            {
+                genres.Add(genre);
+            }
+            return genres;
         }
     }
 }
