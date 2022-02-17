@@ -13,36 +13,28 @@
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding CurrentBook}">
-            <ListBox.ItemTemplate>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=CurrentBook.Title}"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=CurrentBook.Price}"/>
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Path=CurrentBook.Genres}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding }"/>
-                        <Button Content="Lire le livre" Command ="{Binding DataContext.ItemSelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-                        CommandParameter="{Binding .}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Type}"/>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>    
-        </ListBox>
-
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="Voir le contenu" Command ="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
+         CommandParameter="{Binding CurrentBook}"/>
     </Grid>
 </Page>
-    <!-- Mais pas le contenu !-->
-    <!--<il faut afficher les information du livre: Nom, Auteur, Prix, Genres-->
-    <!--<StackPanel>
-        <Label>Detail Livre</Label>
-        <ListBox ItemsSource="{Binding CurrentBook}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding }"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
-         N'oublier pas le bouton pour aller lire le livre. La commande ReadCommand est faite pour ca ! 
-    </StackPanel>-->
     
