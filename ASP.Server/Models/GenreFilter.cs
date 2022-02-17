@@ -14,14 +14,5 @@ namespace ASP.Server.Model
 			this.Genre = genre;
 			this.Type = genre.Type;
 		}
-		public static List<GenreFilter> convertionListGenreFilter(ICollection<Genre> genres)
-		{
-			List<GenreFilter> listeARetourner = new List<GenreFilter>();
-			foreach (Genre elem in genres)
-			{
-				listeARetourner.Add(new GenreFilter(elem));
-			}
-			return listeARetourner;
-		}
 	}	
 }

@@ -99,22 +99,3 @@ namespace ASP.Server.Api
         }
     }
 }
-
-
-///.Include(x => new List<GenreFilter>(new GenreFilter(x.Genres)) ) )=> tentative recuperation Genre.Type
-/* Book book = libraryDbContext.Books.Single(x => x.Id == id);
- * libraryDbContext.Books.Single(x => x.Id == id);
-if (book == null)
-{
-    return NotFound();
-}
-else
-{
-    List<String> genres = new List<string>();
-    foreach (Genre genre in book.Genres)
-    {
-        genres.Add(genre.Type);
-    }
-    List<String> listeARendre = new List<string>() { book.Id.ToString(), book.Title, book.Price.ToString(), book.Contenu, genres.ToString() };
-    return listeARendre;
-}*/

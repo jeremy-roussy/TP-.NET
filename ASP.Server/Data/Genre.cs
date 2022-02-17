@@ -19,6 +19,5 @@ namespace ASP.Server.Model
         public ICollection<Book> Books { get; set; }
         // N'oublier pas qu'un genre peut avoir plusieur livres
     }
-
 }
 
