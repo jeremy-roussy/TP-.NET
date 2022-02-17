@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 
 namespace ASP.Server.Model
 {
@@ -13,6 +13,7 @@ namespace ASP.Server.Model
         public int Id { get; set; }
         public string Title { get; set; }
         public float Price { get; set; }
+        [JsonIgnore]
         public ICollection<Genre> Genres { get; set; }
         public string Contenu { get; set; }
 
