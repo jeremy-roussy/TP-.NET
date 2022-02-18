@@ -15,17 +15,9 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding CurrentBook}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding }"/>
-                        <Button Content="Lire le livre" Command ="{Binding DataContext.ItemSelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
+        
+        <Button Content="Lire le livre" Command ="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                         CommandParameter="{Binding .}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>    
-        </ListBox>
 
     </Grid>
 </Page>
