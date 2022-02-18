@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using WPF.Reader.Model;
 
@@ -50,13 +51,13 @@ namespace WPF.Reader.Service
         public async void LibraryServiceAPI()
         {
             //recup 
-            var client = new RestClient("https://localhost:5001/api/BookController");
+            var client = new RestClient("https://localhost:5001/api/Book");
             var request = new RestRequest("GetBooks")
                 .AddParameter("lim", -1)
                 .AddParameter("offset", 0);
-            var response = await client.GetAsync(request);
+            var response = await client.GetAsync<List<Book>>(request);
             Books.Clear();
-            foreach(var book in response)
+            foreach(var book in response.Select(x => new Book() { Title = x.Title, Id = x.Id}))
             {
                 Books.Add(book);
             }

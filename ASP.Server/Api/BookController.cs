@@ -71,7 +71,7 @@ namespace ASP.Server.Api
             if(offset <= 0 || offset >= listBooks.Count()) { 
                 offset = 0; 
             }
-            if(lim + offset >= listBooks.Count() || lim <= 0) { 
+            if(lim <= 0) { 
                 lim = listBooks.Count() - offset; 
             }
             return listBooks.Select(book => new BookLite(book)).Skip(offset).Take(lim).ToList() ;
