@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using RestSharp;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using WPF.Reader.Model;
 
 namespace WPF.Reader.Service
@@ -22,8 +24,8 @@ namespace WPF.Reader.Service
             Genres = new ObservableCollection<Genre>() { SF, Classic };
 
             Books = new ObservableCollection<Book>() {
-                new Book() { Title = "yyy", Price = 10.9F, Contenu = "HelloContenu", Genres = new List<Genre>() { SF } },
-                new Book() { Title = "hhh", Price = 130, Contenu = "MAMAMAM", Genres = new List<Genre>() { } },
+                new Book() { Title = "BookDelete", Price = 10.9F, Contenu = "HelloContenu", Genres = new List<Genre>() { SF } },
+                new Book() { Title = "TestAPI", Price = 130, Contenu = "MAMAMAM", Genres = new List<Genre>() { } },
                 new Book() { Title = "b", Price = 10, Contenu = "vnvfdnvvjvkxvjdx", Genres = new List<Genre>() { } },
                 new Book() { Title = "ab", Price = 11, Contenu = "hhello my name is John blablla bla", Genres = new List<Genre>() { } },
                 new Book() { Title = "abc", Price = 12, Contenu = "jnjndsjncdjndndsjs", Genres = new List<Genre>() { } },
@@ -37,13 +39,27 @@ namespace WPF.Reader.Service
                 new Book() { Title = "OKOK", Price = 18, Contenu = "dcvbbtnujuyntbr ", Genres = new List<Genre>() { } },
                 new Book() { Title = "FINI", Price = 1, Contenu = "ertyuiuytre", Genres = new List<Genre>() { } }
             };
+            LibraryServiceAPI();
         }
-            
+
 
         public ObservableCollection<Book> Books { get; set; }
 
         // C'est aussi ici que vous ajouterez les requète réseau pour récupérer les livres depuis le web service que vous avez fait
         // Vous pourrez alors ajouter les livres obtenu a la variable Books !
-
+        public async void LibraryServiceAPI()
+        {
+            //recup 
+            var client = new RestClient("https://localhost:5001/api/BookController");
+            var request = new RestRequest("GetBooks")
+                .AddParameter("lim", -1)
+                .AddParameter("offset", 0);
+            var response = await client.GetAsync(request);
+            Books.Clear();
+            foreach(var book in response)
+            {
+                Books.Add(book);
+            }
+        }
     }
 }
