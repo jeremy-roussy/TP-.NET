@@ -32,8 +32,8 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Content="Voir le contenu" Command ="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-         CommandParameter="{Binding CurrentBook}"/>
+        <Button Content="Lire le livre" Command ="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
+                        CommandParameter="{Binding CurrentBook}"/>
     </Grid>
 </Page>
 
