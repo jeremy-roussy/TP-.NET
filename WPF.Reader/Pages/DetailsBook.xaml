@@ -13,6 +13,7 @@
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=CurrentBook.Title}"/>
@@ -33,7 +34,6 @@
         </ItemsControl>
         <Button Content="Lire le livre" Command ="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
                         CommandParameter="{Binding CurrentBook}"/>
-
     </Grid>
 </Page>
 
