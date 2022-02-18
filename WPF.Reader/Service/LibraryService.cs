@@ -57,10 +57,19 @@ namespace WPF.Reader.Service
                 .AddParameter("offset", 0);
             var response = await client.GetAsync<List<Book>>(request);
             Books.Clear();
-            foreach(var book in response.Select(x => new Book() { Title = x.Title, Id = x.Id}))
+            foreach(var book in response)
             {
                 Books.Add(book);
             }
+        }
+        public Book GetBookAPI(long Id)
+        {
+            var client = new RestClient("https://localhost:5001/api/Book");
+            var request = new RestRequest("GetBook")
+                .AddParameter("id", Id);
+            var response = client.GetAsync<Book>(request);
+            Book book = new Book() { Title = response.Result.Title, Contenu = response.Result.Contenu };
+            return book;
         }
     }
 }
